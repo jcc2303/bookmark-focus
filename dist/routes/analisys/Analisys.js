@@ -33,7 +33,8 @@ import chromeApi from "../../background/chrome-api.js";
 import statsApi from "../../background/stats.js";
 import { filter, overview, stats } from "../../stores.js";
 import Wikidata from "../bookmarks/Wikidata.js";
-import ClassifierTfjs from "../bookmarks/ClassifierTfjs.js";
+
+// import ClassifierTfjs from '../bookmarks/ClassifierTfjs.svelte'
 import Prediction from "../bookmarks/Prediction.js";
 
 function get_each_context(ctx, list, i) {

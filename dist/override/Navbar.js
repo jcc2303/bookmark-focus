@@ -27,7 +27,8 @@ import { createEventDispatcher } from "../../web_modules/svelte.js";
 import Theme from "../routes/Theme.js";
 import Focused from "../routes/folders/Focused.js";
 import chromeApi from "../background/chrome-api.js";
-import Usetfjs from "../routes/bookmarks/Usetfjs.js";
+
+// import Usetfjs from '../routes/bookmarks/Usetfjs.svelte'
 import { filter, overview, stats } from "../stores.js";
 
 function create_fragment(ctx) {
