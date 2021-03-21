@@ -204,7 +204,7 @@ function instance($$self, $$props, $$invalidate) {
 
 		const proxyChromeListener = event => {
 			console.log("timeout?", event);
-			if (event.detail === ERROR) window.location.href = "/override";
+			if (event.detail === ERROR) window.location.href = window.location.href + "/override";
 			console.log(event);
 			$$invalidate(0, ping = {});
 			console.log("listener-ping", ping);

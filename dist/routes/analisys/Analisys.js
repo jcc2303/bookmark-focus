@@ -125,7 +125,7 @@ function create_each_block_1(ctx) {
 		});
 
 	function click_handler() {
-		return /*click_handler*/ ctx[9](/*tag*/ ctx[22]);
+		return /*click_handler*/ ctx[8](/*tag*/ ctx[22]);
 	}
 
 	return {
@@ -212,7 +212,7 @@ function create_each_block(ctx) {
 		});
 
 	function click_handler_1() {
-		return /*click_handler_1*/ ctx[10](/*tag*/ ctx[22]);
+		return /*click_handler_1*/ ctx[9](/*tag*/ ctx[22]);
 	}
 
 	return {
@@ -286,8 +286,6 @@ function create_fragment(ctx) {
 	let updating_word;
 	let t3;
 	let div6;
-	let div5;
-	let classifiertfjs;
 	let current;
 	let if_block = /*tags*/ ctx[2].length && create_if_block(ctx);
 	let each_value_1 = /*tags*/ ctx[2].filter(func).slice(0, 6);
@@ -313,7 +311,7 @@ function create_fragment(ctx) {
 	});
 
 	function wikidata_word_binding(value) {
-		/*wikidata_word_binding*/ ctx[11].call(null, value);
+		/*wikidata_word_binding*/ ctx[10].call(null, value);
 	}
 
 	let wikidata_props = { class: "right" };
@@ -324,8 +322,6 @@ function create_fragment(ctx) {
 
 	wikidata = new Wikidata({ props: wikidata_props });
 	binding_callbacks.push(() => bind(wikidata, "word", wikidata_word_binding));
-	classifiertfjs = new ClassifierTfjs({});
-	classifiertfjs.$on("predicted", /*predicted*/ ctx[4]);
 
 	return {
 		c() {
@@ -351,12 +347,10 @@ function create_fragment(ctx) {
 			create_component(wikidata.$$.fragment);
 			t3 = space();
 			div6 = element("div");
-			div5 = element("div");
-			create_component(classifiertfjs.$$.fragment);
+			div6.innerHTML = `<div class="w-full"></div>`;
 			attr(div0, "class", "bg-gray-100 flex items-baseline");
 			attr(div1, "class", "w-full flex flex-wrap text-xs");
 			attr(div2, "class", "w-full flex flex-wrap text-xs");
-			attr(div5, "class", "w-full");
 		},
 		m(target, anchor) {
 			insert(target, div4, anchor);
@@ -381,8 +375,6 @@ function create_fragment(ctx) {
 			mount_component(wikidata, div3, null);
 			insert(target, t3, anchor);
 			insert(target, div6, anchor);
-			append(div6, div5);
-			mount_component(classifiertfjs, div5, null);
 			current = true;
 		},
 		p(ctx, [dirty]) {
@@ -409,7 +401,7 @@ function create_fragment(ctx) {
 				check_outros();
 			}
 
-			if (dirty & /*searchTag, tags*/ 36) {
+			if (dirty & /*searchTag, tags*/ 20) {
 				each_value_1 = /*tags*/ ctx[2].filter(func).slice(0, 6);
 				let i;
 
@@ -436,7 +428,7 @@ function create_fragment(ctx) {
 				check_outros();
 			}
 
-			if (dirty & /*searchTag, childrenTags*/ 40) {
+			if (dirty & /*searchTag, childrenTags*/ 24) {
 				each_value = /*childrenTags*/ ctx[3].filter(func_1).slice(0, 20);
 				let i;
 
@@ -486,7 +478,6 @@ function create_fragment(ctx) {
 			}
 
 			transition_in(wikidata.$$.fragment, local);
-			transition_in(classifiertfjs.$$.fragment, local);
 			current = true;
 		},
 		o(local) {
@@ -504,7 +495,6 @@ function create_fragment(ctx) {
 			}
 
 			transition_out(wikidata.$$.fragment, local);
-			transition_out(classifiertfjs.$$.fragment, local);
 			current = false;
 		},
 		d(detaching) {
@@ -515,7 +505,6 @@ function create_fragment(ctx) {
 			destroy_component(wikidata);
 			if (detaching) detach(t3);
 			if (detaching) detach(div6);
-			destroy_component(classifiertfjs);
 		}
 	};
 }
@@ -527,9 +516,9 @@ function instance($$self, $$props, $$invalidate) {
 	let $overview;
 	let $stats;
 	let $filter;
-	component_subscribe($$self, overview, $$value => $$invalidate(7, $overview = $$value));
-	component_subscribe($$self, stats, $$value => $$invalidate(8, $stats = $$value));
-	component_subscribe($$self, filter, $$value => $$invalidate(17, $filter = $$value));
+	component_subscribe($$self, overview, $$value => $$invalidate(6, $overview = $$value));
+	component_subscribe($$self, stats, $$value => $$invalidate(7, $stats = $$value));
+	component_subscribe($$self, filter, $$value => $$invalidate(16, $filter = $$value));
 	let folder;
 	let cache;
 	let word;
@@ -566,15 +555,15 @@ function instance($$self, $$props, $$invalidate) {
 	}
 
 	$$self.$$.update = () => {
-		if ($$self.$$.dirty & /*$overview*/ 128) {
-			$: $$invalidate(6, folder = $overview);
+		if ($$self.$$.dirty & /*$overview*/ 64) {
+			$: $$invalidate(5, folder = $overview);
 		}
 
-		if ($$self.$$.dirty & /*$stats*/ 256) {
+		if ($$self.$$.dirty & /*$stats*/ 128) {
 			$: cache = $stats.cache;
 		}
 
-		if ($$self.$$.dirty & /*folder*/ 64) {
+		if ($$self.$$.dirty & /*folder*/ 32) {
 			$: if (folder) {
 				console.log("analisysFolder");
 				id = folder.id;
@@ -592,7 +581,6 @@ function instance($$self, $$props, $$invalidate) {
 		title,
 		tags,
 		childrenTags,
-		predicted,
 		searchTag,
 		folder,
 		$overview,

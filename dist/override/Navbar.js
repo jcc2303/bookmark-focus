@@ -6,13 +6,11 @@ import {
 	attr,
 	bind,
 	binding_callbacks,
-	check_outros,
 	component_subscribe,
 	create_component,
 	destroy_component,
 	detach,
 	element,
-	group_outros,
 	init,
 	insert,
 	listen,
@@ -32,92 +30,10 @@ import chromeApi from "../background/chrome-api.js";
 import Usetfjs from "../routes/bookmarks/Usetfjs.js";
 import { filter, overview, stats } from "../stores.js";
 
-function create_if_block(ctx) {
-	let button;
-	let cpuicon;
-	let t;
-	let usetfjs;
-	let updating_data;
-	let current;
-	let mounted;
-	let dispose;
-	cpuicon = new CpuIcon({ props: { size: "1x" } });
-
-	function usetfjs_data_binding(value) {
-		/*usetfjs_data_binding*/ ctx[10].call(null, value);
-	}
-
-	let usetfjs_props = {
-		cache: /*cache*/ ctx[2],
-		overview: /*folder*/ ctx[1]
-	};
-
-	if (/*data*/ ctx[3] !== void 0) {
-		usetfjs_props.data = /*data*/ ctx[3];
-	}
-
-	usetfjs = new Usetfjs({ props: usetfjs_props });
-	binding_callbacks.push(() => bind(usetfjs, "data", usetfjs_data_binding));
-
-	return {
-		c() {
-			button = element("button");
-			create_component(cpuicon.$$.fragment);
-			t = space();
-			create_component(usetfjs.$$.fragment);
-			attr(button, "class", "px-1");
-		},
-		m(target, anchor) {
-			insert(target, button, anchor);
-			mount_component(cpuicon, button, null);
-			insert(target, t, anchor);
-			mount_component(usetfjs, target, anchor);
-			current = true;
-
-			if (!mounted) {
-				dispose = listen(button, "click", /*doAnalisys*/ ctx[5]);
-				mounted = true;
-			}
-		},
-		p(ctx, dirty) {
-			const usetfjs_changes = {};
-			if (dirty & /*cache*/ 4) usetfjs_changes.cache = /*cache*/ ctx[2];
-			if (dirty & /*folder*/ 2) usetfjs_changes.overview = /*folder*/ ctx[1];
-
-			if (!updating_data && dirty & /*data*/ 8) {
-				updating_data = true;
-				usetfjs_changes.data = /*data*/ ctx[3];
-				add_flush_callback(() => updating_data = false);
-			}
-
-			usetfjs.$set(usetfjs_changes);
-		},
-		i(local) {
-			if (current) return;
-			transition_in(cpuicon.$$.fragment, local);
-			transition_in(usetfjs.$$.fragment, local);
-			current = true;
-		},
-		o(local) {
-			transition_out(cpuicon.$$.fragment, local);
-			transition_out(usetfjs.$$.fragment, local);
-			current = false;
-		},
-		d(detaching) {
-			if (detaching) detach(button);
-			destroy_component(cpuicon);
-			if (detaching) detach(t);
-			destroy_component(usetfjs, detaching);
-			mounted = false;
-			dispose();
-		}
-	};
-}
-
 function create_fragment(ctx) {
-	let div4;
-	let nav;
 	let div3;
+	let nav;
+	let div2;
 	let span;
 	let button;
 	let rotatecwicon;
@@ -130,15 +46,13 @@ function create_fragment(ctx) {
 	let bookmarkfilter;
 	let t2;
 	let theme;
-	let t3;
-	let div2;
 	let current;
 	let mounted;
 	let dispose;
 	rotatecwicon = new RotateCwIcon({ props: { size: "1x" } });
 
 	function focused_refresh_binding(value) {
-		/*focused_refresh_binding*/ ctx[9].call(null, value);
+		/*focused_refresh_binding*/ ctx[5].call(null, value);
 	}
 
 	let focused_props = {};
@@ -151,13 +65,12 @@ function create_fragment(ctx) {
 	binding_callbacks.push(() => bind(focused, "refresh", focused_refresh_binding));
 	bookmarkfilter = new BookmarkFilter({});
 	theme = new Theme({});
-	let if_block = /*cache*/ ctx[2] && /*folder*/ ctx[1] && create_if_block(ctx);
 
 	return {
 		c() {
-			div4 = element("div");
-			nav = element("nav");
 			div3 = element("div");
+			nav = element("nav");
+			div2 = element("div");
 			span = element("span");
 			button = element("button");
 			create_component(rotatecwicon.$$.fragment);
@@ -169,39 +82,32 @@ function create_fragment(ctx) {
 			create_component(bookmarkfilter.$$.fragment);
 			t2 = space();
 			create_component(theme.$$.fragment);
-			t3 = space();
-			div2 = element("div");
-			if (if_block) if_block.c();
 			attr(span, "class", "flex items-center");
 			attr(div0, "class", "flex justify-between");
 			attr(div1, "class", "px-8 w-full");
-			attr(div2, "class", "flex w-40 justify-end items-center content-center h-full border");
-			attr(div3, "class", "flex flex-row justify-between");
+			attr(div2, "class", "flex flex-row justify-between");
 			attr(nav, "class", "flex-row ");
-			attr(div4, "class", "bg-purple-300 w-full p-1");
+			attr(div3, "class", "bg-purple-300 w-full p-1");
 		},
 		m(target, anchor) {
-			insert(target, div4, anchor);
-			append(div4, nav);
-			append(nav, div3);
-			append(div3, span);
+			insert(target, div3, anchor);
+			append(div3, nav);
+			append(nav, div2);
+			append(div2, span);
 			append(span, button);
 			mount_component(rotatecwicon, button, null);
-			append(div3, t0);
-			append(div3, div0);
+			append(div2, t0);
+			append(div2, div0);
 			mount_component(focused, div0, null);
-			append(div3, t1);
-			append(div3, div1);
+			append(div2, t1);
+			append(div2, div1);
 			mount_component(bookmarkfilter, div1, null);
-			append(div3, t2);
-			mount_component(theme, div3, null);
-			append(div3, t3);
-			append(div3, div2);
-			if (if_block) if_block.m(div2, null);
+			append(div2, t2);
+			mount_component(theme, div2, null);
 			current = true;
 
 			if (!mounted) {
-				dispose = listen(button, "click", /*click_handler*/ ctx[8]);
+				dispose = listen(button, "click", /*click_handler*/ ctx[4]);
 				mounted = true;
 			}
 		},
@@ -215,29 +121,6 @@ function create_fragment(ctx) {
 			}
 
 			focused.$set(focused_changes);
-
-			if (/*cache*/ ctx[2] && /*folder*/ ctx[1]) {
-				if (if_block) {
-					if_block.p(ctx, dirty);
-
-					if (dirty & /*cache, folder*/ 6) {
-						transition_in(if_block, 1);
-					}
-				} else {
-					if_block = create_if_block(ctx);
-					if_block.c();
-					transition_in(if_block, 1);
-					if_block.m(div2, null);
-				}
-			} else if (if_block) {
-				group_outros();
-
-				transition_out(if_block, 1, 1, () => {
-					if_block = null;
-				});
-
-				check_outros();
-			}
 		},
 		i(local) {
 			if (current) return;
@@ -245,7 +128,6 @@ function create_fragment(ctx) {
 			transition_in(focused.$$.fragment, local);
 			transition_in(bookmarkfilter.$$.fragment, local);
 			transition_in(theme.$$.fragment, local);
-			transition_in(if_block);
 			current = true;
 		},
 		o(local) {
@@ -253,16 +135,14 @@ function create_fragment(ctx) {
 			transition_out(focused.$$.fragment, local);
 			transition_out(bookmarkfilter.$$.fragment, local);
 			transition_out(theme.$$.fragment, local);
-			transition_out(if_block);
 			current = false;
 		},
 		d(detaching) {
-			if (detaching) detach(div4);
+			if (detaching) detach(div3);
 			destroy_component(rotatecwicon);
 			destroy_component(focused);
 			destroy_component(bookmarkfilter);
 			destroy_component(theme);
-			if (if_block) if_block.d();
 			mounted = false;
 			dispose();
 		}
@@ -272,8 +152,8 @@ function create_fragment(ctx) {
 function instance($$self, $$props, $$invalidate) {
 	let $overview;
 	let $stats;
-	component_subscribe($$self, overview, $$value => $$invalidate(6, $overview = $$value));
-	component_subscribe($$self, stats, $$value => $$invalidate(7, $stats = $$value));
+	component_subscribe($$self, overview, $$value => $$invalidate(2, $overview = $$value));
+	component_subscribe($$self, stats, $$value => $$invalidate(3, $stats = $$value));
 	const dispatch = createEventDispatcher();
 	let refresh;
 	let folder;
@@ -290,7 +170,7 @@ function instance($$self, $$props, $$invalidate) {
 		tabs = await Promise.all(tabs.map(t => getBookmark(t).then(b => b || t)));
 		console.log(tabs);
 		let recent = await chromeApi.bookmarks.getRecent(10) || [];
-		$$invalidate(3, data = [...tabs, ...recent.filter(l => l.parentId == "2")]);
+		data = [...tabs, ...recent.filter(l => l.parentId == "2")];
 	}
 
 	const click_handler = () => dispatch("refresh");
@@ -300,34 +180,17 @@ function instance($$self, $$props, $$invalidate) {
 		$$invalidate(0, refresh);
 	}
 
-	function usetfjs_data_binding(value) {
-		data = value;
-		$$invalidate(3, data);
-	}
-
 	$$self.$$.update = () => {
-		if ($$self.$$.dirty & /*$overview*/ 64) {
-			$: $$invalidate(1, folder = $overview);
+		if ($$self.$$.dirty & /*$overview*/ 4) {
+			$: folder = $overview;
 		}
 
-		if ($$self.$$.dirty & /*$stats*/ 128) {
-			$: $$invalidate(2, cache = $stats.cache);
+		if ($$self.$$.dirty & /*$stats*/ 8) {
+			$: cache = $stats.cache;
 		}
 	};
 
-	return [
-		refresh,
-		folder,
-		cache,
-		data,
-		dispatch,
-		doAnalisys,
-		$overview,
-		$stats,
-		click_handler,
-		focused_refresh_binding,
-		usetfjs_data_binding
-	];
+	return [refresh, dispatch, $overview, $stats, click_handler, focused_refresh_binding];
 }
 
 class Navbar extends SvelteComponent {
