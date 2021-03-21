@@ -1,0 +1,56 @@
+[{
+    "children": [
+      {
+        "children": [
+          
+        ],
+        "dateAdded": 1577295639058,
+        "id": "1",
+        "index": 0,
+        "parentId": "0",
+        "title": "Bookmarks bar"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "dateAdded": 1544456154885,
+                "id": "1111",
+                "index": 0,
+                "parentId": "22",
+                "title": "Alquiler idealista",
+                "url": "https://www.idealista.com/inmueble/83440321/"
+              }          
+            ],
+            "dateAdded": 1577295639058,
+            "dateGroupModified": 1564050667311,
+            "id": "22",
+            "index": 0,
+            "parentId": "2",
+            "title": "Focus1"
+          }    
+        ],
+        "dateAdded": 1577295639058,
+        "dateGroupModified": 1564050667311,
+        "id": "2",
+        "index": 1,
+        "parentId": "0",
+        "title": "Other bookmarks"
+      },
+      {
+        "children": [
+        ],
+        "dateAdded": 1577295639058,
+        "dateGroupModified": 1544456154885,
+        "id": "3",
+        "index": 2,
+        "parentId": "0",
+        "title": "Mobile bookmarks"
+      }
+    ],
+    "dateAdded": 1606214498984,
+    "id": "0",
+    "title": ""
+  }
+]

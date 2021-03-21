@@ -1,0 +1,17 @@
+{
+  "imports": {
+    "@tensorflow-models/knn-classifier": "./@tensorflow-models/knn-classifier.js",
+    "@tensorflow-models/universal-sentence-encoder": "./@tensorflow-models/universal-sentence-encoder.js",
+    "@tensorflow/tfjs-backend-cpu": "./@tensorflow/tfjs-backend-cpu.js",
+    "@tensorflow/tfjs-backend-webgl": "./@tensorflow/tfjs-backend-webgl.js",
+    "@tensorflow/tfjs-core": "./@tensorflow/tfjs-core.js",
+    "qs": "./qs.js",
+    "svelte": "./svelte.js",
+    "svelte-feather-icons": "./svelte-feather-icons.js",
+    "svelte-file-dropzone": "./svelte-file-dropzone.js",
+    "svelte-inline-input": "./svelte-inline-input.js",
+    "svelte-spa-router": "./svelte-spa-router.js",
+    "svelte/internal": "./svelte/internal.js",
+    "svelte/store": "./svelte/store.js"
+  }
+}

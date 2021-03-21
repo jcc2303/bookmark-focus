@@ -1,0 +1,26 @@
+{
+  "name": "Bookmark Focus",
+  "version": "0.0.2",
+  "manifest_version": 2,  
+  "description": "A chrome extension to manage your bookmarks.",  
+  "options_page": "options.html",
+  "permissions": [
+    "storage",    
+    "tabs",
+    "bookmarks",
+    "chrome://favicon/"
+  ],  
+  "browser_action": {
+    "default_popup": "index.html",
+    "default_icon": "icon-48.png"
+  },
+	"chrome_url_overrides" : {
+		"newtab": "override.html"
+	},  
+  "icons": { 
+    "16": "icon-16.png",
+    "48": "icon-48.png",
+   "128": "icon-128.png" 
+  },  
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'; img-src 'self' chrome://favicon data:"
+}
